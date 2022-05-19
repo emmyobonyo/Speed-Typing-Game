@@ -38,7 +38,7 @@ function useWordGame(startingTime = 10) {
       } else if(timeRemaining === 0) {
           endGame()
       }
-    }, [timeRemaining, isTimeRunning])
+    }, [timeRemaining, isTimeRunning, endGame])
     
     return {textBoxRef, handleChange, text, isTimeRunning, timeRemaining, startGame, wordCount}
 }
