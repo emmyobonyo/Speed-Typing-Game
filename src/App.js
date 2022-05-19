@@ -15,7 +15,7 @@ function App() {
     
   return (
     <div>
-        <h1>How fast do you type?</h1>
+        <h1>So you want to know how fast do you really type?</h1>
         <textarea
             ref={textBoxRef}
             onChange={handleChange}
