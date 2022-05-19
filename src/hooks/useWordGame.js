@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from "react"
+import {useState, useEffect, useRef, useCallback} from "react"
 
 function useWordGame(startingTime = 10) {   
     const [text, setText] = useState("")
@@ -24,11 +24,11 @@ function useWordGame(startingTime = 10) {
       textBoxRef.current.disabled = false
       textBoxRef.current.focus()
     }
-    
-    function endGame() {
+
+    const endGame = useCallback(() => { 
       setIsTimeRunning(false)
       setWordCount(calculateWordCount(text))
-    }
+    }, [text]);
     
     useEffect(() => {
       if(isTimeRunning && timeRemaining > 0) {
@@ -38,7 +38,7 @@ function useWordGame(startingTime = 10) {
       } else if(timeRemaining === 0) {
           endGame()
       }
-    }, [timeRemaining, isTimeRunning])
+    }, [timeRemaining, isTimeRunning, endGame])
     
     return {textBoxRef, handleChange, text, isTimeRunning, timeRemaining, startGame, wordCount}
 }
